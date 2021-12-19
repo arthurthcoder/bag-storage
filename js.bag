@@ -1,0 +1,50 @@
+// @bag:start(translate-validation)
+function translateValidation()
+{
+    if ($.validator == undefined) {
+        return;
+    }
+
+    $.extend($.validator.messages, {
+        required: "Campo obrigatório",
+        remote: "Campo inválido",
+        email: "E-mail inválido",
+        url: "URL inválido",
+        date: "Data inválida",
+        dateISO: "Data inválida (ISO)",
+        number: "Número inválido",
+        digits: "Digitos inválidos",
+        creditcard: "Cartão de credito inválido",
+        equalTo: "Campo não confere",
+        accept: "Arquivo inválido",
+        maxlength: $.validator.format("Máximo {0} caracteres"),
+        minlength: $.validator.format("Mínimo {0} caracteres"),
+        rangelength: $.validator.format("Informe entre {0} e {1} caracteres"),
+        range: $.validator.format("Informe um valor entre {0} e {1}"),
+        max: $.validator.format("Informe um valor menor ou igual a {0}"),
+        min: $.validator.format("Informe um valor maior ou igual a {0}")
+    });
+}
+// @bag:end(translate-validation)
+
+// @bag:start(simple-login)
+$(document).ready(function(){
+    // translateValidation();
+    $('#simpleLoginForm').validate({
+        rules: {
+            email: {
+                email: true
+            },
+            password: {
+                minlength: 5,
+                maxlength: 50
+            }
+        },
+        submitHandler: function(form, e) {
+            e.preventDefault();
+            console.log('Submit...');
+        }
+    });
+});
+// @bag:end(simple-login)
+

@@ -1,0 +1,23 @@
+/* @bag:start(composer) */
+{
+    "name": "vendor/name",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "author_name",
+            "email": "author_email@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {}
+    },
+    "require": {}
+}
+
+/* @bag:end(composer) */
+
