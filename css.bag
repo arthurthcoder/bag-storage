@@ -24,10 +24,43 @@ input, textarea, select {
 /* @bag:end(base) */
 
 /* @bag:start(forms) */
+
+.form__group {
+    display: block;
+    width: 100%;
+}
+
+.form__group::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
 .form__item {
+    position: relative;
     display: block;
     width: 100%;
     margin-bottom: 20px;
+}
+
+.form__group .form__item {
+    float: left;
+    width: calc((100% - (var(--form-gutter, 20px) * (var(--form-group-columns, 2) - 1))) / var(--form-group-columns, 2));
+    width: -webkit-calc((100% - (var(--form-gutter, 20px) * (var(--form-group-columns, 2) - 1))) / var(--form-group-columns, 2));
+    margin-right: var(--form-gutter, 20px);
+}
+
+.form__group .form__item:last-child {
+    margin-right: 0;
+}
+
+.form__label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form__group > .form__label {
+    display: block;
 }
 
 .form__input {
@@ -77,11 +110,16 @@ body {
 .simple-login {
     width: 100%;
     max-width: 460px;
+}
+
+.simple-login__form {
+    position: relative;
     border-radius: 7px;
     padding: 20px 40px 40px;
     background-color: #fff;
     box-shadow: 0 0 20px 0 rgba(000, 000, 000, .07);
     text-align: center;
+    z-index: 3;
 }
 
 .simple-login h1 {
@@ -124,9 +162,38 @@ body {
 }
 
 .simple-login__button {
+    height: 42px;
     font-size: 16px;
     color: #fff;
     background-color: #5b19e0;
+}
+
+.simple-login__button:disabled {
+    width: 42px;
+    border-radius: 21px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: initial;
+    transition-property: width, height;
+    transition-duration: .2s;
+}
+
+.simple-login__button:disabled span {
+    display: none;
+}
+
+.simple-login__button:disabled::after {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-left: 2px rgba(255, 255, 255, .3) solid;
+    border-top: 2px rgba(255, 255, 255, .99) solid;
+    border-right: 2px rgba(255, 255, 255, .3) solid;
+    border-bottom: 2px rgba(255, 255, 255, .3) solid;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin .5s infinite;
 }
 
 .simple-login__links {
@@ -140,6 +207,37 @@ body {
 
 .simple-login__links a {
     color: #5b19e0;
+}
+
+.simple-login__messages {
+    position: relative;
+    margin-top: 20px;
+    z-index: 2;
+    transform: none;
+    transition-property: margin-top, transform;
+    transition-duration: .3s;
+}
+
+.simple-login__messages:empty {
+    margin-top: 0;
+    transform: translateY(-110%);
+    opacity: 0;
+}
+
+
+.simple-login__messages p {
+    font-size: 14px;
+    color: #fff;
+    background-color: #ff2f29;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px  rgba(000, 000, 000, .15);
+}
+
+.simple-login__messages p:last-child {
+    margin-bottom: 0;
 }
 
 @media screen and (max-width: 500px) {

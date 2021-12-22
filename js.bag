@@ -42,7 +42,31 @@ $(document).ready(function(){
         },
         submitHandler: function(form, e) {
             e.preventDefault();
-            console.log('Submit...');
+
+            const buttonSubmit = $(form).find('[type=submit]');
+            buttonSubmit.attr('disabled', 'disabled');
+    
+            $.ajax({
+                url: form.action,
+                method: 'POST',
+                dataType: 'json',
+                data: $(form).serialize()
+            }).done(function(response){
+                if (response.success) {
+                    window.location.href = response.redirect;
+                    return;
+                }
+                
+                buttonSubmit.removeAttr('disabled');
+                
+                const messages = $('#simpleLoginMessages');
+                messages.html('<p>'+response.message+'</p>');
+                setTimeout(() => messages.html(''), 3000);
+
+            }).fail(function(response){
+                buttonSubmit.removeAttr('disabled');
+                console.log('error_login', response);
+            });
         }
     });
 });
