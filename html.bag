@@ -24,3 +24,46 @@
     </div>
     <!-- @bag:end(simple-login) -->
 
+<!-- @bag:start(simple-header) -->
+    <header id="simpleHeader" class="simple-header simple-header--sticky">
+        <div class="container">
+            <a href="#" class="simple-header__logo">
+                <img src="images/logo.svg" alt="Logo">
+                <!-- <h1>Logo</h1> -->
+            </a>
+    
+            <nav id="simpleHeaderMenu" class="simple-header__menu">
+                <ul class="simple-header__list">
+                    <li class="simple-header__item">
+                        <a href="#">
+                            <span class="icon fi fi-rr-home"></span>
+                            Home
+                        </a>
+                    </li>
+                    <li class="simple-header__item">
+                        <a href="#">
+                            <span class="icon fi fi-rr-shopping-bag"></span>
+                            Products
+                        </a>
+                    </li>
+                    <li class="simple-header__item">
+                        <a href="#">
+                            <span class="icon fi fi-rr-book-alt"></span>
+                            About us
+                        </a>
+                    </li>
+                    <li class="simple-header__item">
+                        <a href="#">
+                            <span class="icon fi fi-rr-smartphone"></span>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <button id="buttonMobile" class="simple-header__button-mobile">
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <!-- @bag:end(simple-header) -->
+

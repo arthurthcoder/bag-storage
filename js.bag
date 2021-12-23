@@ -72,3 +72,44 @@ $(document).ready(function(){
 });
 // @bag:end(simple-login)
 
+// @bag:start(simple-header)
+function simpleHeaderMenu()
+{
+    const header = $('#simpleHeader');
+    const headerMenu = $('#simpleHeaderMenu');
+    const size = {
+        x: $(window).outerWidth(),
+        y: $(window).outerHeight()
+    }
+
+    $('#buttonMobile').on('click', function(){
+        headerMenu.css({
+            'height': ($(window).outerHeight() - header.outerHeight()) + 'px',
+            'top' : header.outerHeight() + 'px'
+        });
+
+        header.toggleClass('active');
+    });
+
+    $(window).resize(function(e){
+        let sizeX = e.target.innerWidth;
+        let sizeY = e.target.innerHeight;
+
+        if (size.x != sizeX) {
+            header.removeClass('active');
+            headerMenu.removeAttr('style');
+            size.x = sizeX;
+            return;
+        }
+
+        if (size.y != sizeY) {
+            headerMenu.css({
+                'height': ($(window).outerHeight() - header.outerHeight()) + 'px',
+                'top' : header.outerHeight() + 'px'
+            });
+            size.y = sizeY;
+        }
+    });
+}
+// @bag:end(simple-header)
+
