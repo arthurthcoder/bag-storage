@@ -82,7 +82,7 @@ function simpleHeaderMenu()
         y: $(window).outerHeight()
     }
 
-    $('#buttonMobile').on('click', function(){
+    $('#simpleHeaderButtonMobile').on('click', function(){
         headerMenu.css({
             'height': ($(window).outerHeight() - header.outerHeight()) + 'px',
             'top' : header.outerHeight() + 'px'
