@@ -102,7 +102,7 @@ function simpleHeaderMenu()
             return;
         }
 
-        if (size.y != sizeY) {
+        if (header.hasClass('active') && size.y != sizeY) {
             headerMenu.css({
                 'height': ($(window).outerHeight() - header.outerHeight()) + 'px',
                 'top' : header.outerHeight() + 'px'

@@ -586,8 +586,8 @@ body {
     width: 100%;
     max-width: 1320px;
     margin: 0 auto;
+    transition: max-width .2s;
 }
-
 
 /* responsive */
 @media screen and (max-width: 1340px) {
@@ -598,28 +598,29 @@ body {
 
 @media screen and (max-width: 1140px) {
     .container {
-        max-width: 960px;
+        max-width: 920px;
     }
 } /* end max-width: 1140px */
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 940px) {
     .container {
         max-width: 720px;
     }
-} /* end max-width: 980px */
+} /* end max-width: 940px */
 
 @media screen and (max-width: 740px) {
     .container {
-        max-width: 540px;
+        max-width: 520px;
     }
 } /* end max-width: 740px */
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 540px) {
     .container {
-        width: calc(100% - var(--container-gutter, 10px) * 2);
-        width: -webkit-calc(100% - var(--container-gutter, 10px) * 2);
+        width: -moz-calc(100% - var(--container-gutter, 20px) * 2);
+        width: -webkit-calc(100% - var(--container-gutter, 20px) * 2);
+        width: calc(100% - var(--container-gutter, 20px) * 2);
     }
-} /* end max-width: 590px */
+} /* end max-width: 540px */
 
 /* @bag:end(container) */
 
