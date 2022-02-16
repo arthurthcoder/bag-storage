@@ -113,3 +113,260 @@ function simpleHeaderMenu()
 }
 // @bag:end(simple-header)
 
+/* @bag:start(validator) */
+class Validator
+{
+    constructor()
+    {
+        this._fail = false;
+
+        this.config({
+            fieldClass: "error",
+            fieldClassValidation: "error-validation",
+            messageElement: "span",
+            messageClass: "error-message"
+        });
+
+        this.addValidation("required", (value, valueRule) => {
+            if (valueRule == true && value.replace(/ /g, '') == '') {
+                return false;
+            }
+
+            return true;
+        }, "Campo obrigatório");
+
+        this.addValidation("minlength", (value, valueRule) => {
+            if (value.replace(/ /g, '').length < valueRule) {
+                this._messages.minlength = this._messages.minlength.replace("{{min}}", valueRule);
+                return false;
+            }
+
+            return true;
+        }, "Mínimo {0} caracteres");
+
+        this.addValidation("maxlength", (value, valueRule) => {
+            if (value.replace(/ /g, '').length > valueRule) {
+                this._messages.maxlength = this._messages.maxlength.replace("{{max}}", valueRule);
+                return false;
+            }
+
+            return true;
+        }, "Máximo {0} caracteres");
+    }
+
+    validate(formId, options)
+    {
+        this._forms = this._forms ?? {};
+
+        this._forms[formId] = {
+            element: document.querySelector("#"+formId),
+            fields: []
+        };
+
+        this._forms[formId]["element"].setAttribute("novalidate", "novalidate");
+
+        this._forms[formId]["element"].querySelectorAll("input, select, textarea").forEach(field => {
+            const rules = {};
+            const messages = {};
+
+            if (field.hasAttribute("required")) {
+                rules.required = true;
+            }
+
+            if (field.hasAttribute("minlength")) {
+                rules.minlength = parseInt(field.getAttribute("minlength"));
+            }
+
+            if (field.hasAttribute("maxlength")) {
+                rules.maxlength = parseInt(field.getAttribute("maxlength"));
+            }
+
+            options = options ?? {};
+
+            if (options.rules) {
+                const index = field.name || field.id;
+                const optionsRules = options.rules[index] || options.rules[index];
+                
+                for (let rule in optionsRules) {
+                    rules[rule] = optionsRules[rule];
+                }
+            }
+
+            for (let rule in rules) {
+                let message = this._messages[rule];
+                
+                if (options.messages) {
+                    if (options.messages[index]) {
+                        message = options.messages[index][rule] || message;
+                    }
+                }
+
+                messages[rule] = message.replace("{0}", rules[rule]);
+            }
+
+            if (field.type != "submit") {
+                this._forms[formId]["fields"].push({
+                    element: field,
+                    name: field.name,
+                    id: field.id,
+                    rules: rules,
+                    messages: messages
+                });
+            }
+        });
+
+        const checkField = field => {
+            let fail = false;
+
+            for (let rule in field.rules) {
+                if (!fail) {
+                    if (!this.check(field, rule)) {
+                        fail = true;
+                    }
+                }
+            }
+
+            return fail;
+        };
+
+        this._forms[formId]["fields"].forEach(field => {
+            let eventName = "keyup";
+
+            if (field.element.localName == "select") {
+                eventName = "change";
+            }
+
+            field.element.addEventListener(eventName, e => {
+                if (field.element.classList.contains(this._config.fieldClassValidation)) {
+                    checkField(field);
+                }
+            });
+        });
+
+        this._forms[formId]["element"].onsubmit = e => {
+
+            this._forms[formId]["fields"].forEach(field => {
+                if (checkField(field)) {
+                    field.element.classList.add(this._config.fieldClassValidation);
+                    this._fail = true;
+                }
+            });
+
+            if (this._fail) {
+                e.preventDefault();
+            }else {
+                if (typeof options.submit === "function") {
+                    options.submit(this._forms[formId]["element"], e);
+                }
+            }
+
+            this._fail = false;
+        }
+    }
+
+    action(options)
+    {
+        const field = options.field;
+        const id = (field.element.id || field.element.name) + "-message";
+
+        let element = document.querySelector("#"+id);
+
+        if (options.action == "add") {
+            if (element) {
+                element.textContent = options.message;
+                return;
+            }
+    
+            element = document.createElement(this._config.messageElement);
+            element.id = id;
+    
+            this._config.messageClass.split(" ").forEach(className => {
+                element.classList.add(className);
+            });
+    
+            element.textContent = options.message;
+    
+            const nextElement = field.element.nextElementSibling;
+            field.element.parentElement.insertBefore(element, nextElement);
+
+            this._config.fieldClass.split(" ").forEach(className => {
+                field.element.classList.add(className);
+            });
+
+        }else if (options.action == "remove") {
+            if (element) {
+                this._config.fieldClass.split(" ").forEach(className => {
+                    field.element.classList.remove(className);
+                });
+                element.remove();
+            }
+        }
+    }
+
+    check(field, rule)
+    {
+        if (field.rules["required"] !== true && field.element.value.replace(/ /g, '') == '') {
+            this.action({
+                action: "remove",
+                field: field
+            });
+            return true;
+        }
+
+        if (this._validations[rule](field.element.value, field.rules[rule])) {
+            this.action({
+                action: "remove",
+                field: field
+            });
+            return true;
+        }
+
+        this.action({
+            action: "add",
+            field: field,
+            message: field.messages[rule]
+        });
+        return false;
+    }
+
+    messages(messages)
+    {
+        this._messages = this._messages ?? {};
+
+        for (let message in messages) {
+            this._messages[message] = messages[message];
+        }
+    }
+
+    config(options)
+    {
+        this._config = this._config ?? {};
+
+        for (let option in options) {
+            this._config[option] = options[option];
+        }
+
+        return this;
+    }
+
+    addValidation(name, validator, message)
+    {
+        this._validations = this._validations ?? {};
+        this._validations[name] = validator;
+
+        const messages = {};
+        messages[name] = message;
+
+        this.messages(messages);
+
+        return this;
+    }
+}
+
+function v()
+{
+    window.Validator = window.Validator ?? new Validator();
+    return window.Validator;
+}
+/* @bag:end(validator) */
+
