@@ -136,7 +136,7 @@ class Validator
         }, "Campo obrigatório");
 
         this.addValidation("minlength", (value, valueRule) => {
-            if (value.replace(/ /g, '').length < valueRule) {
+            if (value.length < valueRule) {
                 this._messages.minlength = this._messages.minlength.replace("{{min}}", valueRule);
                 return false;
             }
@@ -145,7 +145,7 @@ class Validator
         }, "Mínimo {0} caracteres");
 
         this.addValidation("maxlength", (value, valueRule) => {
-            if (value.replace(/ /g, '').length > valueRule) {
+            if (value.length > valueRule) {
                 this._messages.maxlength = this._messages.maxlength.replace("{{max}}", valueRule);
                 return false;
             }
@@ -183,8 +183,9 @@ class Validator
 
             options = options ?? {};
 
+            const index = field.name || field.id;
+
             if (options.rules) {
-                const index = field.name || field.id;
                 const optionsRules = options.rules[index] || options.rules[index];
                 
                 for (let rule in optionsRules) {
