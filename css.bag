@@ -645,20 +645,20 @@ body {
 
 .grid[class*="col-"] > * {
     width: 100%;
-    max-width: -moz-calc((100% - var(--grid-gap, 0px) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
-    max-width: -webkit-calc((100% - var(--grid-gap, 0px) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
-    max-width: calc((100% - var(--grid-gap, 0px) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
-    margin-right: var(--grid-gap, 0);
-    margin-bottom: var(--grid-gap, 0);
+    max-width: -moz-calc((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
+    max-width: -webkit-calc((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
+    max-width: calc((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
+    margin-right: var(--grid-gap-x, var(--grid-gap, 0));
+    margin-bottom: var(--grid-gap-y, var(--grid-gap, 0));
 }
 
 .grid [class*="col-"] {
     width: 100%;
-    max-width: -moz-calc(((100% - var(--grid-gap, 0px) * 11) / 12 + var(--grid-gap, 0px)) * var(--grid-col, 1) - var(--grid-gap, 0px));
-    max-width: -webkit-calc(((100% - var(--grid-gap, 0px) * 11) / 12 + var(--grid-gap, 0px)) * var(--grid-col, 1) - var(--grid-gap, 0px));
-    max-width: calc(((100% - var(--grid-gap, 0px) * 11) / 12 + var(--grid-gap, 0px)) * var(--grid-col, 1) - var(--grid-gap, 0px));
-    margin-right: var(--grid-gap, 0);
-    margin-bottom: var(--grid-gap, 0);
+    max-width: -moz-calc(((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * 11) / 12 + var(--grid-gap-x, var(--grid-gap, 0px))) * var(--grid-col, 1) - var(--grid-gap-x, var(--grid-gap, 0px)));
+    max-width: -webkit-calc(((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * 11) / 12 + var(--grid-gap-x, var(--grid-gap, 0px))) * var(--grid-col, 1) - var(--grid-gap-x, var(--grid-gap, 0px)));
+    max-width: calc(((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * 11) / 12 + var(--grid-gap-x, var(--grid-gap, 0px))) * var(--grid-col, 1) - var(--grid-gap-x, var(--grid-gap, 0px)));
+    margin-right: var(--grid-gap-x, var(--grid-gap, 0));
+    margin-bottom: var(--grid-gap-y, var(--grid-gap, 0));
 }
 
 .grid [class*="col-"]:last-of-type {
@@ -715,7 +715,7 @@ body {
 /* RESPONSIVE */
 @media screen and (max-width: 1340px) { /* EXTRA-LARGE :: XL */
     .grid[class*="xl:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.xl\:col-2 > * {--grid-col: 2;}
@@ -772,7 +772,7 @@ body {
 @media screen and (max-width: 1140px) { /* LARGE :: LG */
 
     .grid[class*="lg:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.lg\:col-2 > * {--grid-col: 2;}
@@ -828,7 +828,7 @@ body {
 
 @media screen and (max-width: 940px) { /* MEDIUM :: MD */
     .grid[class*="md:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.md\:col-2 > * {--grid-col: 2;}
@@ -884,7 +884,7 @@ body {
 
 @media screen and (max-width: 740px) { /* SMALL :: SM */
     .grid[class*="sm:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.sm\:col-2 > * {--grid-col: 2;}
@@ -940,7 +940,7 @@ body {
 
 @media screen and (max-width: 540px) { /* EXTRA-SMALL :: XS */
     .grid[class*="xs:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.xs\:col-2 > * {--grid-col: 2;}
@@ -1116,20 +1116,20 @@ input, textarea, select {
 
 .grid[class*="col-"] > * {
     width: 100%;
-    max-width: -moz-calc((100% - var(--grid-gap, 0px) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
-    max-width: -webkit-calc((100% - var(--grid-gap, 0px) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
-    max-width: calc((100% - var(--grid-gap, 0px) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
-    margin-right: var(--grid-gap, 0);
-    margin-bottom: var(--grid-gap, 0);
+    max-width: -moz-calc((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
+    max-width: -webkit-calc((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
+    max-width: calc((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * (var(--grid-col, 1) - 1)) / var(--grid-col, 1));
+    margin-right: var(--grid-gap-x, var(--grid-gap, 0));
+    margin-bottom: var(--grid-gap-y, var(--grid-gap, 0));
 }
 
 .grid [class*="col-"] {
     width: 100%;
-    max-width: -moz-calc(((100% - var(--grid-gap, 0px) * 11) / 12 + var(--grid-gap, 0px)) * var(--grid-col, 1) - var(--grid-gap, 0px));
-    max-width: -webkit-calc(((100% - var(--grid-gap, 0px) * 11) / 12 + var(--grid-gap, 0px)) * var(--grid-col, 1) - var(--grid-gap, 0px));
-    max-width: calc(((100% - var(--grid-gap, 0px) * 11) / 12 + var(--grid-gap, 0px)) * var(--grid-col, 1) - var(--grid-gap, 0px));
-    margin-right: var(--grid-gap, 0);
-    margin-bottom: var(--grid-gap, 0);
+    max-width: -moz-calc(((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * 11) / 12 + var(--grid-gap-x, var(--grid-gap, 0px))) * var(--grid-col, 1) - var(--grid-gap-x, var(--grid-gap, 0px)));
+    max-width: -webkit-calc(((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * 11) / 12 + var(--grid-gap-x, var(--grid-gap, 0px))) * var(--grid-col, 1) - var(--grid-gap-x, var(--grid-gap, 0px)));
+    max-width: calc(((100% - var(--grid-gap-x, var(--grid-gap, 0px)) * 11) / 12 + var(--grid-gap-x, var(--grid-gap, 0px))) * var(--grid-col, 1) - var(--grid-gap-x, var(--grid-gap, 0px)));
+    margin-right: var(--grid-gap-x, var(--grid-gap, 0));
+    margin-bottom: var(--grid-gap-y, var(--grid-gap, 0));
 }
 
 .grid [class*="col-"]:last-of-type {
@@ -1186,7 +1186,7 @@ input, textarea, select {
 /* RESPONSIVE */
 @media screen and (max-width: 1340px) { /* EXTRA-LARGE :: XL */
     .grid[class*="xl:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.xl\:col-2 > * {--grid-col: 2;}
@@ -1243,7 +1243,7 @@ input, textarea, select {
 @media screen and (max-width: 1140px) { /* LARGE :: LG */
 
     .grid[class*="lg:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.lg\:col-2 > * {--grid-col: 2;}
@@ -1299,7 +1299,7 @@ input, textarea, select {
 
 @media screen and (max-width: 940px) { /* MEDIUM :: MD */
     .grid[class*="md:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.md\:col-2 > * {--grid-col: 2;}
@@ -1355,7 +1355,7 @@ input, textarea, select {
 
 @media screen and (max-width: 740px) { /* SMALL :: SM */
     .grid[class*="sm:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.sm\:col-2 > * {--grid-col: 2;}
@@ -1411,7 +1411,7 @@ input, textarea, select {
 
 @media screen and (max-width: 540px) { /* EXTRA-SMALL :: XS */
     .grid[class*="xs:col-"] > *:nth-child(1n+0) {
-        margin-right: var(--grid-gap, 0);
+        margin-right: var(--grid-gap-x, var(--grid-gap, 0));
     }
 
     .grid.xs\:col-2 > * {--grid-col: 2;}
