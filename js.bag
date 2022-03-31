@@ -371,3 +371,22 @@ function v()
 }
 /* @bag:end(validator) */
 
+/* @bag:start(header) */
+function menu()
+{
+    const body = $("body");
+    const header = $("#header");
+
+    $("#header-button-menu").on("click", function(){
+        header.toggleClass("active-menu");
+
+        if (header.hasClass("active-menu")) {
+            body.addClass("hide-scroll");
+        }else {
+            body.removeClass("hide-scroll");
+        }
+    });
+}
+menu();
+/* @bag:end(header) */
+

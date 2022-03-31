@@ -58,3 +58,72 @@
     </header>
     <!-- @bag:end(simple-header) -->
 
+<!-- @bag:start(header) -->
+<header id="header" class="header header--flex">
+    <div class="container">
+        <a href="#" class="header__logo">
+            Logo
+        </a>
+
+        <nav id="header-menu" class="header__menu">
+            <ul class="header__menu-list">
+                <li class="header__menu-item">
+                    <a href="#">Início</a>
+                </li><!-- header__menu-item -->
+
+                <li class="header__menu-item">
+                    <span>Serviços</span>
+
+                    <div class="header__submenu">
+                        <ul class="header__submenu-list">
+                            <li class="header__submenu-item">
+                                <a href="#">Desenvolvimento Web</a>
+                            </li><!-- header__submenu-item -->
+
+                            <li class="header__submenu-item">
+                                <a href="#">Web Design</a>
+                            </li><!-- header__submenu-item -->
+
+                            <li class="header__submenu-item">
+                                <a href="#">Hospedagem</a>
+                            </li><!-- header__submenu-item -->
+                        </ul><!-- header__submenu-list -->
+                    </div><!-- header__submenu -->
+                </li><!-- header__menu-item -->
+
+                <li class="header__menu-item">
+                    <span>Portfólio</span>
+
+                    <div class="header__submenu">
+                        <ul class="header__submenu-list">
+                            <li class="header__submenu-item">
+                                <a href="#">Todos</a>
+                            </li><!-- header__submenu-item -->
+
+                            <li class="header__submenu-item">
+                                <a href="#">Mais recentes</a>
+                            </li><!-- header__submenu-item -->
+
+                            <li class="header__submenu-item">
+                                <a href="#">Melhores resultados</a>
+                            </li><!-- header__submenu-item -->
+                        </ul><!-- header__submenu-list -->
+                    </div><!-- header__submenu -->
+                </li><!-- header__menu-item -->
+
+                <li class="header__menu-item">
+                    <a href="#">Contato</a>
+                </li><!-- header__menu-item -->
+
+            </ul><!-- header__menu-list -->
+        </nav><!-- header__menu -->
+
+        <button id="header-button-menu" class="header__btn-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div><!-- container -->
+</header><!-- header -->
+<!-- @bag:end(header) -->
+
