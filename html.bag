@@ -59,10 +59,10 @@
     <!-- @bag:end(simple-header) -->
 
 <!-- @bag:start(header) -->
-<header id="header" class="header header--flex">
+<header id="header" class="header header--flex header--sticky">
     <div class="container">
         <a href="#" class="header__logo">
-            Logo
+            <img src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png" alt="Logo Youtube">
         </a>
 
         <nav id="header-menu" class="header__menu">
@@ -72,7 +72,7 @@
                 </li><!-- header__menu-item -->
 
                 <li class="header__menu-item">
-                    <span>Serviços</span>
+                    <span onclick>Serviços</span> <!-- onclick para funcionar hover em IOS MAC -->
 
                     <div class="header__submenu">
                         <ul class="header__submenu-list">
@@ -92,7 +92,7 @@
                 </li><!-- header__menu-item -->
 
                 <li class="header__menu-item">
-                    <span>Portfólio</span>
+                    <span onclick>Portfólio</span> <!-- onclick para funcionar hover em IOS MAC -->
 
                     <div class="header__submenu">
                         <ul class="header__submenu-list">
